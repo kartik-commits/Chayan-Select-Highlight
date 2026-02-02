@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "Select & Highlight",
+  "version": "0.0.1",
+  "description": "Create a shareable link that highlights the selected text.",
+  "permissions": ["contextMenus", "activeTab", "scripting", "clipboardWrite"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Select & Highlight"
+  }
+}
