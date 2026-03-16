@@ -94,18 +94,16 @@ const showBadge = async (tabId, text, color) => {
 
 /**
  * Injected into the page — copies `text` to the clipboard using the
- * modern async Clipboard API. Wrapped in an IIFE to avoid leaking
- * variables into the host page's global scope.
+ * modern async Clipboard API. All variables are block-scoped within
+ * the try/catch to avoid polluting the host page's globals.
  */
 async function copyTextToClipboard(text) {
-  return await (async () => {
-    try {
-      await navigator.clipboard.writeText(text);
-      return { ok: true };
-    } catch (err) {
-      return { ok: false, error: String(err) };
-    }
-  })();
+  try {
+    await navigator.clipboard.writeText(text);
+    return { ok: true };
+  } catch (err) {
+    return { ok: false, error: String(err) };
+  }
 }
 
 /**
@@ -155,9 +153,7 @@ function showToast(message) {
         );
         // Safety net: remove even if transitionend never fires
         setTimeout(() => {
-          if (document.getElementById(TOAST_ID)) {
-            toast.remove();
-          }
+          document.getElementById(TOAST_ID)?.remove();
         }, 500);
       }, 1200);
     } catch {
