@@ -4,6 +4,9 @@
   "version": "0.0.2",
   "description": "Create a shareable link that highlights the selected text.",
   "permissions": ["contextMenus", "activeTab", "scripting"],
+  "host_permissions": [
+    "file:///*"
+  ],
   "background": {
     "service_worker": "background.js"
   },

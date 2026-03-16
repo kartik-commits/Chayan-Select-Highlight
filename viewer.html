@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chayan PDF Viewer</title>
+  <style>
+    body { background-color: #525659; margin: 0; padding: 20px; display: flex; justify-content: center; }
+    #pdf-container { position: relative; box-shadow: 0 4px 8px rgba(0,0,0,0.5); }
+    /* The canvas draws the visual PDF */
+    #pdf-render { display: block; }
+    /* The text layer overlays invisible, selectable HTML text */
+    #text-layer { position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; color: transparent; line-height: 1; }
+    #text-layer ::selection { background: rgba(0, 0, 255, 0.2); color: transparent; }
+  </style>
+</head>
+<body>
+
+  <div id="pdf-container">
+    <canvas id="pdf-render"></canvas>
+    <div id="text-layer"></div>
+  </div>
+
+  <script type="module" src="viewer.js"></script>
+</body>
+</html>

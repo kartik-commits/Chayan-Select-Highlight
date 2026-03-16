@@ -9,6 +9,12 @@ const ensureContextMenu = () => {
       title: "Select & Highlight",
       contexts: ["selection"],
     });
+// Chayan Viewer
+    chrome.contextMenus.create({
+      id: "open-chayan-viewer",
+      title: "Open in Chayan Viewer",
+      contexts: ["all"] 
+    });
   });
 };
 
@@ -161,3 +167,16 @@ function showToast(message) {
     }
   })();
 }
+
+chrome.contextMenus.onClicked.addListener((info, tab) => {
+  if (info.menuItemId === "open-chayan-viewer") {
+    // Check if the current tab is a local file OR a PDF
+    if (tab.url && tab.url.endsWith(".pdf")) {
+      // Launch our custom HTML page, passing the PDF url as a query parameter
+      const viewerUrl = chrome.runtime.getURL(`viewer.html?file=${encodeURIComponent(tab.url)}`);
+      chrome.tabs.update(tab.id, { url: viewerUrl });
+    } else {
+      console.warn("Not a PDF file!");
+    }
+  }
+});
