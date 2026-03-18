@@ -37,18 +37,17 @@ if (!fileUrl) {
       
       page.render(renderContext).promise.then(function () {
         console.log('Page rendered visually!');
-        return page.getTextContent();
-      }).then(function (textContent) {
         const textLayerDiv = document.getElementById('text-layer');
         textLayerDiv.style.height = canvas.height + 'px';
         textLayerDiv.style.width = canvas.width + 'px';
         textLayerDiv.innerHTML = '';
-        pdfjsLib.renderTextLayer({
-          textContentSource: textContent,
+        const textLayer = new pdfjsLib.TextLayer({
+          textContentSource: page.streamTextContent(),
           container: textLayerDiv,
-          viewport: viewport,
-          textDivs: []
+          viewport: viewport
         });
+        return textLayer.render();
+      }).then(function () {
         console.log('Text layer applied! You can now select text.');
       });
     });
