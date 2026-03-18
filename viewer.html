@@ -8,9 +8,12 @@
     #pdf-container { position: relative; box-shadow: 0 4px 8px rgba(0,0,0,0.5); }
     /* The canvas draws the visual PDF */
     #pdf-render { display: block; }
-    /* The text layer overlays invisible, selectable HTML text */
-    #text-layer { position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; color: transparent; line-height: 1; }
-    #text-layer ::selection { background: rgba(0, 0, 255, 0.2); color: transparent; }
+    /* The text layer container */
+    #text-layer { position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; line-height: 1; }
+    /* Forces the injected text spans to align perfectly over the canvas */
+    #text-layer > span { color: transparent; position: absolute; white-space: pre; cursor: text; transform-origin: 0% 0%; }
+    /* The highlight color when you select text */
+    #text-layer ::selection { background: rgba(0, 120, 255, 0.3); color: transparent; }
   </style>
 </head>
 <body>

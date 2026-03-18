@@ -37,6 +37,19 @@ if (!fileUrl) {
       
       page.render(renderContext).promise.then(function () {
         console.log('Page rendered visually!');
+        return page.getTextContent();
+      }).then(function (textContent) {
+        const textLayerDiv = document.getElementById('text-layer');
+        textLayerDiv.style.height = canvas.height + 'px';
+        textLayerDiv.style.width = canvas.width + 'px';
+        textLayerDiv.innerHTML = '';
+        pdfjsLib.renderTextLayer({
+          textContentSource: textContent,
+          container: textLayerDiv,
+          viewport: viewport,
+          textDivs: []
+        });
+        console.log('Text layer applied! You can now select text.');
       });
     });
   }).catch(function (error) {
