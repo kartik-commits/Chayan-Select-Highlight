@@ -11,9 +11,9 @@
     /* The text layer container */
     #text-layer { position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; line-height: 1; }
     /* Forces the injected text spans to align perfectly over the canvas */
-    #text-layer > span { color: transparent; position: absolute; white-space: pre; cursor: text; transform-origin: 0% 0%; }
+    #text-layer > span { color: rgba(0, 0, 0, 0); position: absolute; white-space: pre; cursor: text; transform-origin: 0% 0%; }
     /* The highlight color when you select text */
-    #text-layer ::selection { background: rgba(0, 120, 255, 0.3); color: transparent; }
+    #text-layer ::selection { background: rgba(0, 120, 255, 0.3); color: rgba(0, 0, 0, 0); }
   </style>
 </head>
 <body>

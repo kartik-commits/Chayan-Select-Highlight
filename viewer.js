@@ -40,6 +40,7 @@ if (!fileUrl) {
         const textLayerDiv = document.getElementById('text-layer');
         textLayerDiv.style.height = canvas.height + 'px';
         textLayerDiv.style.width = canvas.width + 'px';
+        textLayerDiv.style.setProperty('--scale-factor', viewport.scale);
         textLayerDiv.innerHTML = '';
         const textLayer = new pdfjsLib.TextLayer({
           textContentSource: page.streamTextContent(),
